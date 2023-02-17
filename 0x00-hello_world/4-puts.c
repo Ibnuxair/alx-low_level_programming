@@ -1,11 +1,16 @@
 #include<stdio.h>
-int main()
+
+/**
+ * main - prints exacty "Programming is like building a multilingual puzzle
+ * myStr: hold the content
+ *
+ * Return: 0 to terminate the program
+ */
+
+int main(void)
 {
-  /*string initialisation*/
-    char Mystr[] = "Programming is like building a multilingual puzzle";
-    
-    puts(Mystr); /*writing the string to stdout*/
-    
-    return 0;
+char myStr[] = "\"Programming is like building a multilingual puzzle\n";
+puts(myStr);
+return (0);
 }
 
