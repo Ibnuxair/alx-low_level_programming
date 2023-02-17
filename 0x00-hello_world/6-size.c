@@ -2,10 +2,10 @@
 
 /**
  * main - prints exacty the size of datatype
- * @charType: hold the size of char
- * @intType: hold the size of intType
- * @longIntType: hold the size of longInt
- * @longLongIntType: hold the size of longLongInt
+ * charType: hold the size of char
+ * intType: hold the size of intType
+ * longIntType: hold the size of longInt
+ * longLongIntType: hold the size of longLongInt
  *
  * Return: 0 to terminate the program
  */
