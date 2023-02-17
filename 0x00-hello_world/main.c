@@ -1,4 +1,5 @@
 #include <stdio.h>
+#define Hi "Hello World"
 
 /**
  * main - Entry point
@@ -7,5 +8,7 @@
  */
 int main(void)
 {
-    return (0);
+printf(Hi);
+
+return (0);
 }
