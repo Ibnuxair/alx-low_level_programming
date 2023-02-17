@@ -5,7 +5,6 @@
 /**
  * main - prints whether the random number generated is +, 0, or -
  * n - holds the number
- * 
  * Return: 0 to terminate the program
  */
 
