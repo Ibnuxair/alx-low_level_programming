@@ -1,20 +1,25 @@
 #include <stdio.h>
 /**
- * main -  prints numbers from 0 t0 9
- * ch - hold the firt number
+ * main -  prints hexadecimal numbers
  *
  * Return: 0 to terminate the program
- */
-
+*/
 int main(void)
 {
-        int i = 0x0;
+	int i = 0;
+	int j = 0;
 
-        while (i <= 0xf)
-        {	
-                putchar(i);
-                i++;
-        }
-        putchar('\n');
-        return (0);
+	while (i <= 9)
+	{
+		putchar('0' + i);
+		i++;
+	}
+
+	while (j <= 5)
+	{
+		putchar('a' + j);
+		j++;
+	}
+	putchar('\n');
+	return (0);
 }
