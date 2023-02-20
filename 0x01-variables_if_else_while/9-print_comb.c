@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 /**
  * main -  prints numbers from 0 t0 9
  * ch - hold the firt number
@@ -24,6 +25,5 @@ int main(void)
 		}
 		i++;
 	}
-	putchar('\n');
 	return (0);
 }
