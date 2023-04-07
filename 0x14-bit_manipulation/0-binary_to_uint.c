@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <ctype.h>
 /**
  * binary_to_uint - converts a binary number to an unsigned int
  * @b:  is pointing to a string of 0 and 1 chars
@@ -19,7 +19,7 @@ unsigned int binary_to_uint(const char *b)
 
 	for (i = len - 1; i >= 0; i--)
 	{
-		if (b == NULL || (b[i] <= '0' && b[i] >= '1'))
+		if (b == NULL || (!isdigit(b[i])))
 			return (0);
 
 		if (b[i] == '1')
