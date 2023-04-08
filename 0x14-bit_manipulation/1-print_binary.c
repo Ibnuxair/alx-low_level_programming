@@ -12,7 +12,7 @@ void print_binary(unsigned long int n)
 	int i, count = 0;
 	unsigned long int bit;
 
-	for (i = 10; i >= 0; i--)
+	for (i = 63; i >= 0; i--)
 	{
 		bit = n >> i;
 		if (bit & 1)
