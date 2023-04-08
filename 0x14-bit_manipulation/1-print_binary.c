@@ -9,16 +9,13 @@
 
 void print_binary(unsigned long int n)
 {
-	int i;
-	int count;
+	int i, count = 0;
 	unsigned long int bit;
 
-	count = 0;
-
-	for (i = 63; i >= 0; i--)
+	for (i = 10; i >= 0; i--)
 	{
-		bit = (n >> i) & 1;
-		if (bit)
+		bit = n >> i;
+		if (bit & 1)
 		{
 			_putchar('1');
 			count++;
@@ -26,7 +23,7 @@ void print_binary(unsigned long int n)
 		else if (count)
 			_putchar('0');
 
-		if (!count)
-			_putchar('o');
 	}
+	if (!count)
+		_putchar('0');
 }
