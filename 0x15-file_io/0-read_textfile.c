@@ -16,7 +16,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	char *buffer;
 	ssize_t fp, rt, wr;
 
-	if(!filename)
+	if (!filename)
 		return (0);
 
 	fp = open(filename, O_RDONLY);
@@ -43,11 +43,8 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	}
 
 	wr = write(STDOUT_FILENO, buffer, rt);
-	if (wr == -1)
+	if (wr == -1 || wr != rt)
 	{
-		perror("write");
-		free(buffer);
-		close(fp);
 		return (0);
 	}
 
