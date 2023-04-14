@@ -67,7 +67,8 @@ int main(int argc, char *argv[])
 	read_size = read(fd_src, buffer, BUFF_SIZE);
 	fd_dest = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
-	do {
+	while (read_size > 0)
+	{
 		if (fd_src == -1 || read_size == -1)
 		{
 			dprintf(STDERR_FILENO,
@@ -85,8 +86,7 @@ int main(int argc, char *argv[])
 			exit(99);
 		}
 		read_size = read(fd_src, buffer, BUFF_SIZE);
-		fd_dest = open(argv[2], O_WRONLY | O_APPEND);
-	} while (read_size > 0);
+	}
 	free(buffer);
 	close(fd_src);
 	close(fd_dest);
