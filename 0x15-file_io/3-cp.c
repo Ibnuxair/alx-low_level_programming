@@ -47,7 +47,7 @@ char *create_buff(char *file)
 /**
  * main - copies the content of a file to another file
  * @argc: arguments count
- * @argv[]: array of arguments
+ * @argv: array of arguments
  * Return: 0 always (success)
  */
 int main(int argc, char *argv[])
@@ -86,8 +86,8 @@ int main(int argc, char *argv[])
 			exit(99);
 		}
 		read_size = read(fd_src, buffer, BUFF_SIZE);
+		fd_dest = open(argv[2], O_WRONLY | O_APPEND);
 	}
-
 	free(buffer);
 	close(fd_src);
 	close(fd_dest);
