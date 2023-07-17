@@ -9,21 +9,27 @@
 
 int _atoi(char *s)
 {
-	int res;
-	int sign;
+	int res = 0;
+	int sign = 1;
+	int is_digit = 0;
 
-	res = 0;
-	sign = 1;
-	while (*s == 32 || (*s >= 9 && *s <= 13))
-		s++;
-	if (*s == '-')
-		sign *= -1;
-	if (*s == '-' || *s == '+')
-		s++;
-	while (*s >= '0' && *s <= '9')
+	while (*s != '\0')
 	{
-		res = res * 10 + (*s - '0');
+		if (*s >= '0' && *s <= '9')
+		{
+			is_digit = 1;
+			res = res * 10 + (*s - '0');
+		}
+		else if (is_digit)
+		{
+			break;
+		}
+		else if (*s == '-')
+		{
+			sign *= -1;
+		}
 		s++;
 	}
-	return (res * sign);
+
+	return res * sign;
 }
