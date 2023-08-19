@@ -18,7 +18,6 @@ unsigned int dlist_len(dlistint_t *h)
 	}
 	return (count);
 }
-
 /**
  * insert_dnodeint_at_index - inserts a new node at a given position
  * @h: the head double pointer
@@ -29,40 +28,44 @@ unsigned int dlist_len(dlistint_t *h)
  */
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	dlistint_t *curr, *next, *new_node;
+	dlistint_t *curr, *new_node, *prev_node;
 	unsigned int len = dlist_len(*h);
 	unsigned int i;
 
 	if (idx > len)
 		return (NULL);
-
 	if (idx == 0)
 		return (add_dnodeint(h, n));
-
 	if (idx == len)
 		return (add_dnodeint_end(h, n));
 
 	curr = *h;
-	for (i = 0; i < idx - 1 && curr != NULL; i++)
+	prev_node = NULL;
+
+	/* Traverse to the node before the desired index */
+	for (i = 0; i < idx && curr != NULL; i++)
 	{
+		prev_node = curr;
 		curr = curr->next;
 	}
 
-	if (curr == NULL)
-		return (NULL);
+	if (i != idx)
+		return (NULL); /* Index out of bounds */
 
+	/* Create the new node and update its pointers */
 	new_node = malloc(sizeof(dlistint_t));
 	if (!new_node)
 		return (NULL);
 
-	next = curr->next;
 	new_node->n = n;
-	new_node->prev = curr;
-	new_node->next = next;
-	curr->next = new_node;
+	new_node->prev = prev_node;
+	new_node->next = curr;
 
-	if (next != NULL)
-		next->prev = new_node;
+	if (prev_node != NULL)
+		prev_node->next = new_node;
+
+	if (curr != NULL)
+		curr->prev = new_node;
 
 	return (new_node);
 }
