@@ -1,5 +1,4 @@
 #include "lists.h"
-
 /**
  * dlist_len - returns the length of the list
  * @h: the head pointer
@@ -34,23 +33,23 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 
 	if (idx > len)
 		return (NULL);
+
+	/* Handle cases of adding at the beginning or end */
 	if (idx == 0)
 		return (add_dnodeint(h, n));
 	if (idx == len)
 		return (add_dnodeint_end(h, n));
-
 	curr = *h;
 	prev_node = NULL;
-
 	/* Traverse to the node before the desired index */
 	for (i = 0; i < idx && curr != NULL; i++)
 	{
 		prev_node = curr;
 		curr = curr->next;
 	}
-
+	/* Check if the desired index was reached */
 	if (i != idx)
-		return (NULL); /* Index out of bounds */
+		return (NULL);
 
 	/* Create the new node and update its pointers */
 	new_node = malloc(sizeof(dlistint_t));
