@@ -40,7 +40,7 @@ hash_node_t *create_node(const char *key, const char *value)
 /**
  * hash_table_set - adds an element to the hash table
  * @ht: the hash table
- * the key and cannot be an empty string
+ *  @key: the key and cannot be an empty string
  * @value: the value associated with the key
  *
  * Return: 1 if it succeeded, 0 otherwise
