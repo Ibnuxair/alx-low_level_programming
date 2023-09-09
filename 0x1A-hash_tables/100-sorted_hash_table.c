@@ -30,6 +30,41 @@ shash_table_t *shash_table_create(unsigned long int size)
 }
 
 /**
+ * create_node - creates a node
+ * @key: the key and cannot be an empty string
+ * @value: the value associated with the key
+ *
+ * Return: a pointer to the new created node, or NULL on failure
+ */
+shash_node_t *create_node(const char *key, const char *value)
+{
+        shash_node_t *new_node;
+
+        new_node = malloc(sizeof(shash_node_t));
+        if (!new_node)
+                return (NULL);
+
+        new_node->key = strdup(key);
+        if (!new_node->key)
+        {
+                free(new_node);
+                return (NULL);
+        }
+
+        new_node->value = strdup(value);
+        if (!new_node->value)
+        {
+                free(new_node->key);
+                free(new_node);
+                return (NULL);
+        }
+
+        new_node->next = NULL;
+
+        return (new_node);
+}
+
+/**
  * shash_table_set - Adds an element to the sorted hash table.
  * @ht: The sorted hash table.
  * @key: The key (cannot be an empty string).
@@ -46,7 +81,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		return (0);
 
 	index = key_index((const unsigned char *)key, ht->size);
-
 	curr = ht->array[index];
 	while (curr != NULL)
 	{
@@ -58,16 +92,9 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		}
 		curr = curr->next;
 	}
-
-	new_node = malloc(sizeof(shash_node_t));
-	if (!new_node)
-		return (0);
-
-	new_node->key = strdup(key);
-	new_node->value = strdup(value);
+	new_node = create_node(key, value);
 	new_node->next = ht->array[index];
 	ht->array[index] = new_node;
-
 	/* Update sorted linked list */
 	if (ht->shead == NULL)
 	{
@@ -92,7 +119,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 			curr->sprev = new_node;
 		else
 			ht->stail = new_node;
-
 		new_node->sprev = prev;
 		new_node->snext = curr;
 	}
