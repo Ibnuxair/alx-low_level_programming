@@ -13,9 +13,6 @@ CFLAGS = -Wall -Werror -Wextra -pedantic
 # Object files generated from source files
 OBJ := $(patsubst %.c, %.o, $(SRC))
 
-# Define RM directly
-RM = /bin/rm -f
-
 # Rule to build the executable
 all: $(NAME)
 
