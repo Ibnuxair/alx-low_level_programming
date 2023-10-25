@@ -13,22 +13,19 @@ CFLAGS = -Wall -Werror -Wextra -pedantic
 # Object files generated from source files
 OBJ := $(patsubst %.c, %.o, $(SRC))
 
-# Define RM directly
-RM = /bin/rm -f
-
 # Rule to build the executable
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $@
+        $(CC) $(OBJ) -o $@
 
 # Rule to clean up temporary files and executable
 clean:
-	$(RM) *~ $(NAME)
+        $(RM) *~ $(NAME)
 
 # Rule to clean up object files
 oclean:
-	$(RM) $(OBJ)
+        $(RM) $(OBJ)
 
 # Rule to clean up temporary files, executable, and object files
 fclean: clean oclean
@@ -38,7 +35,7 @@ re: oclean all
 
 # Ensure the header file m.h exists
 m.h:
-	@if [ ! -e $@ ]; then echo "$@ not found"; false; fi
+        @if [ ! -e $@ ]; then echo "$@ not found"; false; fi
 
 # Phony targets (don't correspond to actual files)
 .PHONY: all clean oclean fclean re
