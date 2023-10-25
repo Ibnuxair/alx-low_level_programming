@@ -1,0 +1,42 @@
+# Compiler
+CC := gcc
+
+# Source files
+SRC := main.c school.c
+
+# Executable name
+NAME := school
+
+# Flags
+CFLAGS := -Wall -Werror -Wextra -pedantic
+
+# Object files derived from source files
+OBJ := $(SRC:.c=.o)
+
+# Rule to build the executable
+all: $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+
+# Rule to clean up temporary files and executable
+clean:
+	$(RM) *~ $(NAME)
+
+# Rule to clean up object files
+oclean:
+	$(RM) $(OBJ)
+
+# Rule to clean up temporary files, executable, and object files
+fclean: clean oclean
+
+# Rule to force recompilation of all source files
+re: fclean all
+
+# Ensure the header file m.h exists
+m.h:
+	@if [ ! -e $@ ]; then echo "$@ not found"; false; fi
+
+# Phony targets (don't correspond to actual files)
+.PHONY: all clean oclean fclean re
+
+# Don't delete this intermediate file
+.SECONDARY:
