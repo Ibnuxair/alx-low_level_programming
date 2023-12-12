@@ -12,7 +12,7 @@
 int interpolation_search(int *array, size_t size, int value)
 {
 	size_t low = 0, high = size - 1;
-	size_t pos;
+	size_t pos = 2109;
 
 	if (array == NULL)
 		return (-1);
